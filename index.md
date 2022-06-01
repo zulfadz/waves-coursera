@@ -1,5 +1,5 @@
 ---
-title: "Analysis notes"
+title: "Notes on Abbott's understanding analysis"
 description: "Notes on Abbott's understanding analysis"
 author: "Zul "
 ---
@@ -40,4 +40,4 @@ Ok i just looked at [MO](https://math.stackexchange.com/questions/103839/proof-t
 
 #### 4-4. Density of irrational in R
 
-Bro this is cool. I'm shook
+Bro this is cool. I'm shook. Will go to blog post.
