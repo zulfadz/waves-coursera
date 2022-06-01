@@ -182,178 +182,76 @@
 <h1 class="title">Analysis notes</h1>
 <p class="author">Zul</p>
 </header>
-<h3 id="norm-and-inner-product">Norm and Inner Product</h3>
-<p>The technique for proving the triangle inequality Spivak used was
-interesting, basically, if <span class="math inline">x,y</span> are
-linearly independent then, for all <span class="math display">\lambda
-\in \mathbf{R}</span></p>
-<p><span class="math display">\begin{equation}
-0 \lt \|x - \lambda y\|^2 = \lambda^2 \|y\|^2 - 2\lambda \langle
-x,y\rangle + \|x\|^2
-\end{equation}</span></p>
-<p>Since the quadratic has no real solution we must have <span
-class="math inline">b^2 - 4ac \lt 0</span> or</p>
+<h3 id="consequences-of-completeness">Consequences of completeness</h3>
+<h4 id="nested-interval-property">4-1. Nested Interval Property</h4>
+<p>The statement looks similar to Example 1.2.2. My first thought was
+that it’s going to be empty.. I guess the difference is that <span
+class="math inline">I_n = [a_n,b_n]</span> instead of <span
+class="math inline">\{n,n+1,...\}</span> (one, contingent on <span
+class="math inline">a_n</span> rather than <span
+class="math inline">n</span>; two, has an upperbound of <span
+class="math inline">b_n</span>).</p>
+<p>Intuitively, the theorem follows from the fact that all <span
+class="math inline">a_n</span> is bounded by all <span
+class="math inline">b_n</span>, thus by axiom of completeness, there’s
+an <span class="math inline">x</span> nested for all intervals <span
+class="math inline">[a_n,b_n]</span>.</p>
+<h4 id="archimedean-property">4-2. Archimedean Property</h4>
+<p>Intuitively, property 1 saying that <span
+class="math inline">\mathbf{N}</span> is not bounded above. It is
+interesting to note that the proof only depends on axiom of completeness
+and that <span class="math inline">\mathbf{N}</span> is closed under
+addition.</p>
+<p>Not too sure what’s the usefulness of property 2… it’s just a
+reciprocal.. but it’s saying that any positive real number is bigger
+than <span class="math inline">1/n</span> if <span
+class="math inline">n</span> is big enough.</p>
+<h4 id="density-of-q-in-r">4-3. Density of Q in R</h4>
+<p>My god… Abbott is so good at explaining this proof. I have never seen
+any other authors explained the way he does.</p>
+<p>I think the tricky part is just choosing m greater than na, such that
+m is small enough so that</p>
 <p><span class="math display">
-4\langle x,y\rangle^2 - 4\|y\|^2\|x\|^2 \lt 0
+m-1 \leq na &lt;m
 </span></p>
-<p>Which implies <span class="math inline">\langle x,y\rangle \lt
-\|x\|\|y\|</span> as desired.</p>
-<h4 id="section">1-1.</h4>
-<p>Intuitively taxicab distance must be longer, since it constrains you
-from going diagonally. For a proof, take <span class="math inline">x =
-x_ie^i</span> then use the triangle inequality to get <span
-class="math inline">|x| \le \sum_{i=1}^n |x_i|</span> (since <span
-class="math inline">|e_i|=1</span>).</p>
-<h4 id="section-1">1-2</h4>
-<p>In Theorem 1-1 (3) the critical step is Cauchy Swartz, in which
-equality holds if and only if <span class="math inline">x = \lambda
-y</span> for some <span class="math inline">\lambda</span>.</p>
-<h4 id="section-2">1-3</h4>
-<p>This is just the triangle inequality (Theorem 1-1 (3)) on <span
-class="math inline">(-y)</span>, i.e. <span class="math display">|x - y|
-= |x + (-y)| \le |x| + |-y| = |x| + |y|</span></p>
-<h4 id="section-3">1-4</h4>
-<p>WOLG assume <span class="math inline">|x| \ge |y|</span>, then <span
-class="math inline">|x| - |y| \le |x-y|</span> is a rearrangement of the
-triangle inequality, since <span class="math display">|x| = |(x - y) +
-y| \le |x-y| + |y|</span></p>
-<h4 id="section-4">1-5</h4>
-<p>Obvious consequence of Theorem 1-1 (3).</p>
-<p><span class="math display">
-|z-x| = |(z-y) + (y-x)| \le |z-y| + |y-x|
-</span></p>
-<h4 id="section-5">1-6</h4>
-<ol type="a">
-<li><p>Exactly the same argument as before.</p></li>
-<li><p>The assumption “<span class="math inline">\int_a^b f - \lambda g
-\ne 0</span> for all <span class="math inline">\lambda</span>” and
-“<span class="math inline">f - \lambda g \ne 0</span> for all <span
-class="math inline">\lambda</span>” are not the same in general
-(consider where <span class="math inline">f</span> and <span
-class="math inline">g</span> differ on a set of measure zero, e.g. a
-single point.) for continuous functions they are the same though, since
-any nonzero point contributes measure for continuous functions.</p></li>
-<li><p>There’s a natural isomorphism between vectors in <span
-class="math inline">\mathbf{R}^n</span> and functions on <span
-class="math inline">[0,1]</span> that looks something like this (too
-lazy to write it down explicitly)</p></li>
+<p>How do we know such m exists? My first thought is that the key is
+actually to pick <span class="math inline">n</span> big enough so that
+it “step over” <span class="math inline">(a,b)</span>. Such <span
+class="math inline">n</span> exists by property 2 of Archimedean
+property (ah, now i see why it’s useful). As a result, <span
+class="math inline">1/n</span>, scaled by some integer <span
+class="math inline">m</span>, will straddle between <span
+class="math inline">a</span> and <span class="math inline">a+1</span>
+(see figure). Meaning <span class="math inline">m/n</span>.. wait this
+does not follow (i iniatially thought of saying <span
+class="math inline">m/n -1</span> is less than <span
+class="math inline">a</span>, but no, it is <span
+class="math inline">m/n - 1/n</span>)</p>
+<p><img src="./images/4_3_qdense.png" /></p>
+<p>Ok i just looked at <a
+href="https://math.stackexchange.com/questions/103839/proof-that-mathbbq-is-dense-in-mathbbr">MO</a>.
+To prove existence of <span class="math inline">m</span>, given any real
+<span class="math inline">r</span>,</p>
+<ol type="1">
+<li>if <span class="math inline">r&gt;0</span>, then <span
+class="math inline">\exist m</span>, where <span
+class="math inline">m</span> is natural number and <span
+class="math inline">m&gt;r</span>. Let <span
+class="math inline">M</span> be the set of such m’s. By well-ordering,
+there is a <span class="math inline">m_0 \leq m</span>. If <span
+class="math inline">m_0=1</span>, then <span
+class="math inline">0&lt;r&lt;1</span> and we are done. If <span
+class="math inline">m_0&gt;1</span> then <span class="math inline">m_0-1
+\leq r</span> by well-ordering principle.</li>
+<li>If <span class="math inline">r=0</span>, then <span
+class="math inline">m_0</span> =1 and we are done.</li>
+<li>If <span class="math inline">r &lt;0</span>, then let $ w = -r$. By
+(1), there is <span class="math inline">m_0-1 \leq w &lt;m_0</span>,
+therefore <span class="math inline">-m_0&lt;r \leq 1-m_0</span>. If
+<span class="math inline">r &lt; 1-m_0</span>, we are done. Otherwise,
+choose <span class="math inline">2 - m_0</span> and we are done.</li>
 </ol>
-<p><img src="./images/isomorphism-Rn-C01.png" /></p>
-<p>By “isomorphism” I mean that if <span class="math inline">\phi :
-\mathbf{R}^n \to C[0,1]</span> is our isomorphism and <span
-class="math inline">x,y \in \mathbf{R}^n</span>, then <span
-class="math inline">\langle x,y\rangle = \langle \phi(x),
-\phi(y)\rangle</span> or more explicitly <span
-class="math inline">\sum_{i=1}^n x_iy_i = \int_0^1
-\phi[x](t)\phi[y](t)dt</span></p>
-<h4 id="section-6">1-7</h4>
-<ol type="a">
-<li><p>Trivial from the polarization identity (Theorem 1-2 (5)) but
-still profound. You can check angles are preserved by checking distances
-get preserved!</p></li>
-<li><p><span class="math inline">|Tx| = |x| = 0</span> if and only if
-<span class="math inline">x = 0</span> by the definiteness of inner
-products, likewise for <span class="math inline">y = Tx</span> we have
-<span class="math inline">|T^{-1}y| = |x| = |Tx| = |y|</span> meaning
-<span class="math inline">T^{-1}</span> is also norm
-preserving.</p></li>
-</ol>
-<h4 id="section-7">1-8</h4>
-<ol type="a">
-<li>Assume <span class="math inline">T</span> is norm-preserving, then
-<span class="math inline">T</span> is inner product preserving as well,
-and so</li>
-</ol>
-<p><span class="math display">
-\angle(Tx,Ty)
-= \arccos \frac{\langle Tx,Ty\rangle}{|Tx||Ty|}
-= \arccos \frac{\langle x,y\rangle}{|x||y|}
-= \angle(x,y)
-</span></p>
-<ol start="2" type="a">
-<li>If there is a basis with <span class="math inline">Tx_i = \lambda_i
-x_i</span> (i.e. <span class="math inline">T</span> can be made
-diagonal) and if every <span class="math inline">\lambda_i =
-\lambda</span> then, for any <span class="math inline">x = a_ix^i</span>
-and <span class="math inline">y = b_iy^i</span> we have</li>
-</ol>
-<p><span class="math display">
-\angle(Tx,Ty)
-= \arccos \frac{\langle Tx,Ty\rangle}{|Tx||Ty|}
-= \arccos \frac{\lambda^2\langle x,y\rangle}{\lambda^2|x||y|}
-= \angle(x,y)
-</span></p>
-<p>For the converse suppose <span class="math inline">\lambda_i \ne
-\lambda_j</span> for some <span class="math inline">i,j</span>. Then
-<span class="math inline">\angle(Tx_i, T(x_i+x_j)) \ne \angle(x_i,
-x_i+x_j)</span> (I think, too lazy to check rigorously)</p>
-<ol start="3" type="a">
-<li>Rotations? idk</li>
-</ol>
-<h4 id="section-8">1-9</h4>
-<p>Let <span class="math inline">x \ne 0</span>, we have</p>
-<p><span class="math display">
-Tx = T(x_1,x_2) = (x_1\cos\theta + x_2\sin\theta, -x_1 \sin\theta +
-x_2\cos\theta)
-</span></p>
-<p>And</p>
-<p><span class="math display">
-\begin{aligned}
-\langle Tx, x\rangle
-&amp;= x_1^2\cos\theta + x_1x_2\sin\theta - x_1x_2\sin\theta +
-x_2^2\cos\theta \\
-&amp;= (x_1^2 + x_2^2)\cos\theta
-\end{aligned}
-</span></p>
-<p>Note <span class="math inline">T</span> is norm preserving (by some
-easy algebra and the fact that <span class="math inline">\cos^2\theta +
-\sin^2\theta = 1</span>), and so finally</p>
-<p><span class="math display">
-\angle(Tx,x)
-= \arccos \frac{\langle Tx,x\rangle}{|Tx|\cdot |x|}
-= \arccos \frac{(x_1^2+x_2)^2\cos\theta}{x_1^2 + x_2^2}
-= \theta
-</span></p>
-<h4 id="section-9">1-10</h4>
-<p>Let <span class="math inline">e_1,\dots,e_n</span> be the standard
-basis, apply the triangle inequality and Cauchy-Swartz to get</p>
-<p><span class="math display">
-\begin{aligned}
-|T(h)|
-&amp;= |T(a_ie^i)| \\
-&amp;\le \sum_{i=1}^n |a_i| |Te_i| \\
-&amp;\le
-\underbrace{\left(\sum_{i=1}^n |a_i|^2\right)^{1/2}}_{|h|}
-\cdot
-\underbrace{\left(\sum_{i=1}^n |Te_i|^2\right)^{1/2}}_M \\
-&amp;= |h|\cdot M
-\end{aligned}
-</span></p>
-<h4 id="section-10">1-11</h4>
-<p>Easy to check mentally via the summations. I particularly like <span
-class="math inline">|(x,z)| = \sqrt{|x|^2 + |z|^2}</span>. It’s like you
-can have “coordinates” where <span class="math inline">x \in
-\mathbf{R}^n</span> and <span class="math inline">z \in
-\mathbf{R}^m</span> :D</p>
-<h4 id="section-11">1-12</h4>
-<p>If <span class="math inline">Tx = \varphi_x = 0</span> then <span
-class="math inline">\langle x,y\rangle = 0</span> for all <span
-class="math inline">y</span>, set <span class="math inline">y = x</span>
-to get <span class="math inline">|x|^2 = 0</span> implying <span
-class="math inline">x = 0</span>. Thus, <span
-class="math inline">T</span> is 1-1, and by the Fundamental Theorem of
-linear algebra <span class="math inline">T</span> is onto as well.
-Meaning every <span class="math inline">\varphi</span> can be written
-<span class="math inline">\varphi = Tx</span> for a unique <span
-class="math inline">x</span>.</p>
-<h4 id="section-12">1-13</h4>
-<p><span class="math display">
-|x+y|^2 = \langle x+y,x+y\rangle = |x|^2 + |y|^2 + 2\langle x,y\rangle
-</span></p>
-<p>If <span class="math inline">\langle x,y\rangle = 0</span> we clearly
-have <span class="math inline">|x+y|^2 = |x|^2+|y|^2</span>.</p>
-<h3 id="subsets-of-euclidean-space">Subsets of Euclidean Space</h3>
-<p>It’s weird that Spivak uses rectangles instead of circles for open
-sets.</p>
+<h4 id="density-of-irrational-in-r">4-4. Density of irrational in R</h4>
+<p>Bro this is cool. I’m shook</p>
 </body>
 </html>

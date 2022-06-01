@@ -4,153 +4,40 @@ description: "Notes on Abbott's understanding analysis"
 author: "Zul "
 ---
 
-### Norm and Inner Product
+### Consequences of completeness
 
-The technique for proving the triangle inequality Spivak used was interesting, basically, if $x,y$ are linearly independent then, for all $$\lambda \in \mathbf{R}$$
+#### 4-1. Nested Interval Property
 
-$$\begin{equation}
-0 \lt \|x - \lambda y\|^2 = \lambda^2 \|y\|^2 - 2\lambda \langle x,y\rangle + \|x\|^2
-\end{equation}$$
+The statement looks similar to Example 1.2.2. My first thought was that it's going to be empty.. I guess the difference is that $I_n = [a_n,b_n]$ instead of $\{n,n+1,...\}$ (one, contingent on $a_n$ rather than $n$; two, has an upperbound of $b_n$).
 
-Since the quadratic has no real solution we must have $b^2 - 4ac \lt 0$ or
+Intuitively, the theorem follows from the fact that all $a_n$ is bounded by all $b_n$, thus by axiom of completeness, there's an $x$ nested for all intervals $[a_n,b_n]$.
 
-$$
-4\langle x,y\rangle^2 - 4\|y\|^2\|x\|^2 \lt 0
-$$
+#### 4-2. Archimedean Property
 
-Which implies $\langle x,y\rangle \lt \|x\|\|y\|$ as desired.
+Intuitively, property 1 saying that  $\mathbf{N}$ is not bounded above. It is interesting to note that the proof only depends on axiom of completeness and that $\mathbf{N}$ is closed under addition.
 
-#### 1-1.
+Not too sure what's the usefulness of property 2... it's just a reciprocal.. but it's saying that any positive real number is bigger than $1/n$ if $n$ is big enough.
 
-Intuitively taxicab distance must be longer, since it constrains you from going diagonally.
-For a proof, take $x = x_ie^i$ then use the triangle inequality to get $|x| \le \sum_{i=1}^n |x_i|$ (since $|e_i|=1$).
+#### 4-3. Density of Q in R
 
-#### 1-2
+My god... Abbott is so good at explaining this proof. I have never seen any other authors explained the way he does.
 
-In Theorem 1-1 (3) the critical step is Cauchy Swartz, in which equality holds if and only if $x = \lambda y$ for some $\lambda$.
-
-#### 1-3
-
-This is just the triangle inequality (Theorem 1-1 (3)) on $(-y)$, i.e.
-$$|x - y| = |x + (-y)| \le |x| + |-y| = |x| + |y|$$
-
-#### 1-4
-
-WOLG assume $|x| \ge |y|$, then $|x| - |y| \le |x-y|$ is a rearrangement of the triangle inequality, since
-$$|x| = |(x - y) + y| \le |x-y| + |y|$$
-
-#### 1-5
-
-Obvious consequence of Theorem 1-1 (3).
+I think the tricky part is just choosing m greater than na, such that m is small enough so that 
 
 $$
-|z-x| = |(z-y) + (y-x)| \le |z-y| + |y-x|
+m-1 \leq na <m
 $$
 
-#### 1-6
+How do we know such m exists? My first thought is that the key is actually to pick $n$ big enough so that it "step over" $(a,b)$. Such $n$ exists by property 2 of Archimedean property (ah, now i see why it's useful). As a result, $1/n$, scaled by some integer $m$, will straddle between $a$ and $a+1$ (see figure). Meaning $m/n$.. wait this does not follow (i iniatially thought of saying $m/n -1$ is less than $a$, but no, it is $m/n - 1/n$)
 
-a. Exactly the same argument as before.
+![](./images/4_3_qdense.png)
 
-b. The assumption "$\int_a^b f - \lambda g \ne 0$ for all $\lambda$" and "$f - \lambda g \ne 0$ for all $\lambda$" are not the same in general (consider where $f$ and $g$ differ on a set of measure zero, e.g. a single point.) for continuous functions they are the same though, since any nonzero point contributes measure for continuous functions.
+Ok i just looked at [MO](https://math.stackexchange.com/questions/103839/proof-that-mathbbq-is-dense-in-mathbbr). To prove existence of $m$, given any real $r$,
 
-c. There's a natural isomorphism between vectors in $\mathbf{R}^n$ and functions on $[0,1]$ that looks something like this (too lazy to write it down explicitly)
+1. if $r>0$, then $\exist m$, where $m$ is natural number and $m>r$. Let $M$ be the set of such m's. By well-ordering, there is a $m_0 \leq m$. If $m_0=1$, then $0<r<1$ and we are done. If $m_0>1$ then $m_0-1 \leq r$ by well-ordering principle.
+2. If $r=0$, then $m_0$ =1 and we are done.
+3. If $r <0$, then let $ w = -r$. By (1), there is $m_0-1 \leq w <m_0$, therefore $-m_0<r \leq 1-m_0$. If $r < 1-m_0$, we are done. Otherwise, choose $2 - m_0$ and we are done.
 
-![](./images/isomorphism-Rn-C01.png)
+#### 4-4. Density of irrational in R
 
-By "isomorphism" I mean that if $\phi : \mathbf{R}^n \to C[0,1]$ is our isomorphism and $x,y \in \mathbf{R}^n$, then $\langle x,y\rangle = \langle \phi(x), \phi(y)\rangle$ or more explicitly $\sum_{i=1}^n x_iy_i = \int_0^1 \phi[x](t)\phi[y](t)dt$
-
-#### 1-7
-
-a. Trivial from the polarization identity (Theorem 1-2 (5)) but still profound. You can check angles are preserved by checking distances get preserved!
-
-b. $|Tx| = |x| = 0$ if and only if $x = 0$ by the definiteness of inner products, likewise for $y = Tx$ we have $|T^{-1}y| = |x| = |Tx| = |y|$ meaning $T^{-1}$ is also norm preserving.
-
-#### 1-8
-
-a. Assume $T$ is norm-preserving, then $T$ is inner product preserving as well, and so
-
-$$
-\angle(Tx,Ty)
-= \arccos \frac{\langle Tx,Ty\rangle}{|Tx||Ty|}
-= \arccos \frac{\langle x,y\rangle}{|x||y|}
-= \angle(x,y)
-$$
-
-b. If there is a basis with $Tx_i = \lambda_i x_i$ (i.e. $T$ can be made diagonal) and if every $\lambda_i = \lambda$ then, for any $x = a_ix^i$ and $y = b_iy^i$ we have
-
-$$
-\angle(Tx,Ty)
-= \arccos \frac{\langle Tx,Ty\rangle}{|Tx||Ty|}
-= \arccos \frac{\lambda^2\langle x,y\rangle}{\lambda^2|x||y|}
-= \angle(x,y)
-$$
-
-For the converse suppose $\lambda_i \ne \lambda_j$ for some $i,j$. Then $\angle(Tx_i, T(x_i+x_j)) \ne \angle(x_i, x_i+x_j)$ (I think, too lazy to check rigorously)
-
-c. Rotations? idk
-
-#### 1-9
-
-Let $x \ne 0$, we have
-
-$$
-Tx = T(x_1,x_2) = (x_1\cos\theta + x_2\sin\theta, -x_1 \sin\theta + x_2\cos\theta)
-$$
-
-And
-
-$$
-\begin{aligned}
-\langle Tx, x\rangle
-&= x_1^2\cos\theta + x_1x_2\sin\theta - x_1x_2\sin\theta + x_2^2\cos\theta \\
-&= (x_1^2 + x_2^2)\cos\theta
-\end{aligned}
-$$
-
-Note $T$ is norm preserving (by some easy algebra and the fact that $\cos^2\theta + \sin^2\theta = 1$), and so finally
-
-$$
-\angle(Tx,x)
-= \arccos \frac{\langle Tx,x\rangle}{|Tx|\cdot |x|}
-= \arccos \frac{(x_1^2+x_2)^2\cos\theta}{x_1^2 + x_2^2}
-= \theta
-$$
-
-#### 1-10
-
-Let $e_1,\dots,e_n$ be the standard basis, apply the triangle inequality and Cauchy-Swartz to get
-
-$$
-\begin{aligned}
-|T(h)|
-&= |T(a_ie^i)| \\
-&\le \sum_{i=1}^n |a_i| |Te_i| \\
-&\le
-\underbrace{\left(\sum_{i=1}^n |a_i|^2\right)^{1/2}}_{|h|}
-\cdot
-\underbrace{\left(\sum_{i=1}^n |Te_i|^2\right)^{1/2}}_M \\
-&= |h|\cdot M
-\end{aligned}
-$$
-
-#### 1-11
-
-Easy to check mentally via the summations. I particularly like $|(x,z)| = \sqrt{|x|^2 + |z|^2}$. It's like you can have "coordinates" where $x \in \mathbf{R}^n$ and $z \in \mathbf{R}^m$ :D
-
-#### 1-12
-
-If $Tx = \varphi_x = 0$ then $\langle x,y\rangle = 0$ for all $y$, set $y = x$ to get $|x|^2 = 0$ implying $x = 0$.
-Thus, $T$ is 1-1, and by the Fundamental Theorem of linear algebra $T$ is onto as well.
-Meaning every $\varphi$ can be written $\varphi = Tx$ for a unique $x$.
-
-#### 1-13
-
-$$
-|x+y|^2 = \langle x+y,x+y\rangle = |x|^2 + |y|^2 + 2\langle x,y\rangle
-$$
-
-If $\langle x,y\rangle = 0$ we clearly have $|x+y|^2 = |x|^2+|y|^2$.
-
-### Subsets of Euclidean Space
-
-It's weird that Spivak uses rectangles instead of circles for open sets.
+Bro this is cool. I'm shook
