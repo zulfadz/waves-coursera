@@ -1,6 +1,6 @@
 ---
-title: "Notes on Abbott's understanding analysis"
-description: "Notes on Abbott's understanding analysis"
+title: "Notes on Abbott's Understanding Analysis"
+description: "Notes on analysis"
 author: "Zul "
 ---
 
