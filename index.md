@@ -1,7 +1,7 @@
 ---
-title: "Calculus on manifolds notes"
-description: "Notes on Spivak's calculus on manifolds"
-author: "Ulisse Mini"
+title: "Analysis notes"
+description: "Notes on Abbott's understanding analysis"
+author: "Zul "
 ---
 
 ### Norm and Inner Product
