@@ -6,11 +6,11 @@ author: "Ulisse Mini"
 
 ### Norm and Inner Product
 
-The technique for proving the triangle inequality Spivak used was interesting, basically, if $x,y$ are linearly independent then, for all $\lambda \in \mathbf{R}$
+The technique for proving the triangle inequality Spivak used was interesting, basically, if $x,y$ are linearly independent then, for all $$\lambda \in \mathbf{R}$$
 
-$$
+$$\begin{equation}
 0 \lt \|x - \lambda y\|^2 = \lambda^2 \|y\|^2 - 2\lambda \langle x,y\rangle + \|x\|^2
-$$
+\end{equation}$$
 
 Since the quadratic has no real solution we must have $b^2 - 4ac \lt 0$ or
 
