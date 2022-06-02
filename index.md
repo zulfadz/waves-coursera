@@ -35,9 +35,17 @@ How do we know such m exists? My first thought is that the key is actually to pi
 Ok i just looked at [MO](https://math.stackexchange.com/questions/103839/proof-that-mathbbq-is-dense-in-mathbbr). To prove existence of $m$, given any real $r$,
 
 1. if $r>0$, then $\exists m$, where $m$ is natural number and $m>r$. Let $M$ be the set of such m's. By well-ordering, there is a $m_0 \leq m$. If $m_0=1$, then $0<r<1$ and we are done. If $m_0>1$ then $m_0-1 \leq r$ by well-ordering principle.
-2. If $r=0$, then $m_0$ =1 and we are done.
-3. If $r <0$, then let $ w = -r$. By (1), there is $m_0-1 \leq w <m_0$, therefore $-m_0<r \leq 1-m_0$. If $r < 1-m_0$, we are done. Otherwise, choose $2 - m_0$ and we are done.
+2. If $r=0$, then $m_0 =1$ and we are done.
+3. If $r <0$, then let $w = -r$. By (1), there is $m_0-1 \leq w <m_0$, therefore $-m_0<r \leq 1-m_0$. If $r < 1-m_0$, we are done. Otherwise, choose $2 - m_0$ and we are done.
 
 #### 4-4. Density of irrational in R
 
 Bro this is cool. I'm shook. Will go to blog post.
+
+#### 4-5. Existence of square roots
+
+I  suppose proof by construction has always been what Im weak at, and this theorem requires proof by constructions.
+
+Essentially, the proof relies on finding a counterexample -- namely, a number whose square is bigger than $a^2$ but smaller than 2. To do that, need to use $(a + 1/n)^{2}$ and pick and $n$ that makes the terms less than 2.
+
+On the other side is finding a number whose square is smaller than $a^2$ but bigger than 2. Again, key is to use $(a - 1/n)^{2}$ and to use $n$ that will make the term bigger than 2.
