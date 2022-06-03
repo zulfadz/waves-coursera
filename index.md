@@ -12,6 +12,8 @@ The statement looks similar to Example 1.2.2. My first thought was that it's goi
 
 Intuitively, the theorem follows from the fact that all $a_n$ is bounded by all $b_n$, thus by axiom of completeness, there's an $x$ nested for all intervals $[a_n,b_n]$.
 
+Edit 2022-06-03: Now that I've done exercise 1.4.3, Nested Interval Property must be closed for the conclusion of the theorem to hold.
+
 #### 4-2. Archimedean Property
 
 Intuitively, property 1 saying that  $\mathbf{N}$ is not bounded above. It is interesting to note that the proof only depends on axiom of completeness and that $\mathbf{N}$ is closed under addition.
@@ -37,6 +39,8 @@ Ok i just looked at [MO](https://math.stackexchange.com/questions/103839/proof-t
 1. if $r>0$, then $\exists m$, where $m$ is natural number and $m>r$. Let $M$ be the set of such m's. By well-ordering, there is a $m_0 \leq m$. If $m_0=1$, then $0<r<1$ and we are done. If $m_0>1$ then $m_0-1 \leq r$ by well-ordering principle.
 2. If $r=0$, then $m_0 =1$ and we are done.
 3. If $r <0$, then let $w = -r$. By (1), there is $m_0-1 \leq w <m_0$, therefore $-m_0<r \leq 1-m_0$. If $r < 1-m_0$, we are done. Otherwise, choose $2 - m_0$ and we are done.
+
+Edit 2022-06-03: Now that I have done exercise 1.4.6, the key part of this proof really is just in having $n$ so small such that $1/n < (a,b)$ for any $a$ and $b$.
 
 #### 4-4. Density of irrational in R
 
