@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Zul" />
+  <meta name="description" content="Notes on analysis" />
+  <title>Notes on Abbott’s Understanding Analysis</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Notes on Abbott’s Understanding Analysis</h1>
+<p class="author">Zul</p>
+</header>
+<h3 id="consequences-of-completeness">Consequences of completeness</h3>
+<h4 id="nested-interval-property">4-1. Nested Interval Property</h4>
+<p>The statement looks similar to Example 1.2.2. My first thought was
+that it’s going to be empty.. I guess the difference is that <span
+class="math inline">I_n = [a_n,b_n]</span> instead of <span
+class="math inline">\{n,n+1,...\}</span> (one, contingent on <span
+class="math inline">a_n</span> rather than <span
+class="math inline">n</span>; two, has an upperbound of <span
+class="math inline">b_n</span>).</p>
+<p>Intuitively, the theorem follows from the fact that all <span
+class="math inline">a_n</span> is bounded by all <span
+class="math inline">b_n</span>, thus by axiom of completeness, there’s
+an <span class="math inline">x</span> nested for all intervals <span
+class="math inline">[a_n,b_n]</span>.</p>
+<p>Edit 2022-06-03: Now that I’ve done exercise 1.4.3, Nested Interval
+Property must be closed for the conclusion of the theorem to hold.</p>
+<h4 id="archimedean-property">4-2. Archimedean Property</h4>
+<p>Intuitively, property 1 saying that <span
+class="math inline">\mathbf{N}</span> is not bounded above. It is
+interesting to note that the proof only depends on axiom of completeness
+and that <span class="math inline">\mathbf{N}</span> is closed under
+addition.</p>
+<p>Not too sure what’s the usefulness of property 2… it’s just a
+reciprocal.. but it’s saying that any positive real number is bigger
+than <span class="math inline">1/n</span> if <span
+class="math inline">n</span> is big enough.</p>
+<h4 id="density-of-q-in-r">4-3. Density of Q in R</h4>
+<p>My god… Abbott is so good at explaining this proof. I have never seen
+any other authors explained the way he does.</p>
+<p>I think the tricky part is just choosing m greater than na, such that
+m is small enough so that</p>
+<p><span class="math display">
+m-1 \leq na &lt;m
+</span></p>
+<p>How do we know such m exists? My first thought is that the key is
+actually to pick <span class="math inline">n</span> big enough so that
+it “step over” <span class="math inline">(a,b)</span>. Such <span
+class="math inline">n</span> exists by property 2 of Archimedean
+property (ah, now i see why it’s useful). As a result, <span
+class="math inline">1/n</span>, scaled by some integer <span
+class="math inline">m</span>, will straddle between <span
+class="math inline">a</span> and <span class="math inline">a+1</span>
+(see figure). Meaning <span class="math inline">m/n</span>.. wait this
+does not follow (i iniatially thought of saying <span
+class="math inline">m/n -1</span> is less than <span
+class="math inline">a</span>, but no, it is <span
+class="math inline">m/n - 1/n</span>)</p>
+<p><img src="./images/4_3_qdense.png" /></p>
+<p>Ok i just looked at <a
+href="https://math.stackexchange.com/questions/103839/proof-that-mathbbq-is-dense-in-mathbbr">MO</a>.
+To prove existence of <span class="math inline">m</span>, given any real
+<span class="math inline">r</span>,</p>
+<ol type="1">
+<li>if <span class="math inline">r&gt;0</span>, then <span
+class="math inline">\exists m</span>, where <span
+class="math inline">m</span> is natural number and <span
+class="math inline">m&gt;r</span>. Let <span
+class="math inline">M</span> be the set of such m’s. By well-ordering,
+there is a <span class="math inline">m_0 \leq m</span>. If <span
+class="math inline">m_0=1</span>, then <span
+class="math inline">0&lt;r&lt;1</span> and we are done. If <span
+class="math inline">m_0&gt;1</span> then <span class="math inline">m_0-1
+\leq r</span> by well-ordering principle.</li>
+<li>If <span class="math inline">r=0</span>, then <span
+class="math inline">m_0 =1</span> and we are done.</li>
+<li>If <span class="math inline">r &lt;0</span>, then let <span
+class="math inline">w = -r</span>. By (1), there is <span
+class="math inline">m_0-1 \leq w &lt;m_0</span>, therefore <span
+class="math inline">-m_0&lt;r \leq 1-m_0</span>. If <span
+class="math inline">r &lt; 1-m_0</span>, we are done. Otherwise, choose
+<span class="math inline">2 - m_0</span> and we are done.</li>
+</ol>
+<p>Edit 2022-06-03: Now that I have done exercise 1.4.6, the key part of
+this proof really is just in having <span class="math inline">n</span>
+so small such that <span class="math inline">1/n &lt; (a,b)</span> for
+any <span class="math inline">a</span> and <span
+class="math inline">b</span>.</p>
+<h4 id="density-of-irrational-in-r">4-4. Density of irrational in R</h4>
+<p>Bro this is cool. I’m shook. Will go to blog post.</p>
+<h4 id="existence-of-square-roots">4-5. Existence of square roots</h4>
+<p>I suppose proof by construction has always been what Im weak at, and
+this theorem requires proof by constructions.</p>
+<p>Essentially, the proof relies on finding a counterexample – namely, a
+number whose square is bigger than <span class="math inline">a^2</span>
+but smaller than 2. To do that, need to use <span class="math inline">(a
++ 1/n)^{2}</span> and pick and <span class="math inline">n</span> that
+makes the terms less than 2.</p>
+<p>On the other side is finding a number whose square is smaller than
+<span class="math inline">a^2</span> but bigger than 2. Again, key is to
+use <span class="math inline">(a - 1/n)^{2}</span> and to use <span
+class="math inline">n</span> that will make the term bigger than 2.</p>
+</body>
+</html>
