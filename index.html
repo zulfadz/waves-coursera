@@ -5,8 +5,8 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Zul" />
-  <meta name="description" content="Notes on analysis" />
-  <title>Notes on Abbott’s Understanding Analysis</title>
+  <meta name="description" content="Notes on wave and simulation" />
+  <title>Notes on Coursera’s Computers, Waves, Simulations</title>
   <style>
     html {
       line-height: 1.5;
@@ -179,99 +179,204 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Notes on Abbott’s Understanding Analysis</h1>
+<h1 class="title">Notes on Coursera’s Computers, Waves, Simulations</h1>
 <p class="author">Zul</p>
 </header>
-<h3 id="consequences-of-completeness">Consequences of completeness</h3>
-<h4 id="nested-interval-property">4-1. Nested Interval Property</h4>
-<p>The statement looks similar to Example 1.2.2. My first thought was
-that it’s going to be empty.. I guess the difference is that <span
-class="math inline">I_n = [a_n,b_n]</span> instead of <span
-class="math inline">\{n,n+1,...\}</span> (one, contingent on <span
-class="math inline">a_n</span> rather than <span
-class="math inline">n</span>; two, has an upperbound of <span
-class="math inline">b_n</span>).</p>
-<p>Intuitively, the theorem follows from the fact that all <span
-class="math inline">a_n</span> is bounded by all <span
-class="math inline">b_n</span>, thus by axiom of completeness, there’s
-an <span class="math inline">x</span> nested for all intervals <span
-class="math inline">[a_n,b_n]</span>.</p>
-<p>Edit 2022-06-03: Now that I’ve done exercise 1.4.3, Nested Interval
-Property must be closed for the conclusion of the theorem to hold.</p>
-<h4 id="archimedean-property">4-2. Archimedean Property</h4>
-<p>Intuitively, property 1 saying that <span
-class="math inline">\mathbf{N}</span> is not bounded above. It is
-interesting to note that the proof only depends on axiom of completeness
-and that <span class="math inline">\mathbf{N}</span> is closed under
-addition.</p>
-<p>Not too sure what’s the usefulness of property 2… it’s just a
-reciprocal.. but it’s saying that any positive real number is bigger
-than <span class="math inline">1/n</span> if <span
-class="math inline">n</span> is big enough.</p>
-<h4 id="density-of-q-in-r">4-3. Density of Q in R</h4>
-<p>My god… Abbott is so good at explaining this proof. I have never seen
-any other authors explained the way he does.</p>
-<p>I think the tricky part is just choosing m greater than na, such that
-m is small enough so that</p>
-<p><span class="math display">
-m-1 \leq na &lt;m
-</span></p>
-<p>How do we know such m exists? My first thought is that the key is
-actually to pick <span class="math inline">n</span> big enough so that
-it “step over” <span class="math inline">(a,b)</span>. Such <span
-class="math inline">n</span> exists by property 2 of Archimedean
-property (ah, now i see why it’s useful). As a result, <span
-class="math inline">1/n</span>, scaled by some integer <span
-class="math inline">m</span>, will straddle between <span
-class="math inline">a</span> and <span class="math inline">a+1</span>
-(see figure). Meaning <span class="math inline">m/n</span>.. wait this
-does not follow (i iniatially thought of saying <span
-class="math inline">m/n -1</span> is less than <span
-class="math inline">a</span>, but no, it is <span
-class="math inline">m/n - 1/n</span>)</p>
-<p><img src="./images/4_3_qdense.png" /></p>
-<p>Ok i just looked at <a
-href="https://math.stackexchange.com/questions/103839/proof-that-mathbbq-is-dense-in-mathbbr">MO</a>.
-To prove existence of <span class="math inline">m</span>, given any real
-<span class="math inline">r</span>,</p>
-<ol type="1">
-<li>if <span class="math inline">r&gt;0</span>, then <span
-class="math inline">\exists m</span>, where <span
-class="math inline">m</span> is natural number and <span
-class="math inline">m&gt;r</span>. Let <span
-class="math inline">M</span> be the set of such m’s. By well-ordering,
-there is a <span class="math inline">m_0 \leq m</span>. If <span
-class="math inline">m_0=1</span>, then <span
-class="math inline">0&lt;r&lt;1</span> and we are done. If <span
-class="math inline">m_0&gt;1</span> then <span class="math inline">m_0-1
-\leq r</span> by well-ordering principle.</li>
-<li>If <span class="math inline">r=0</span>, then <span
-class="math inline">m_0 =1</span> and we are done.</li>
-<li>If <span class="math inline">r &lt;0</span>, then let <span
-class="math inline">w = -r</span>. By (1), there is <span
-class="math inline">m_0-1 \leq w &lt;m_0</span>, therefore <span
-class="math inline">-m_0&lt;r \leq 1-m_0</span>. If <span
-class="math inline">r &lt; 1-m_0</span>, we are done. Otherwise, choose
-<span class="math inline">2 - m_0</span> and we are done.</li>
-</ol>
-<p>Edit 2022-06-03: Now that I have done exercise 1.4.6, the key part of
-this proof really is just in having <span class="math inline">n</span>
-so small such that <span class="math inline">1/n &lt; (a,b)</span> for
-any <span class="math inline">a</span> and <span
-class="math inline">b</span>.</p>
-<h4 id="density-of-irrational-in-r">4-4. Density of irrational in R</h4>
-<p>Bro this is cool. I’m shook. Will go to blog post.</p>
-<h4 id="existence-of-square-roots">4-5. Existence of square roots</h4>
-<p>I suppose proof by construction has always been what Im weak at, and
-this theorem requires proof by constructions.</p>
-<p>Essentially, the proof relies on finding a counterexample – namely, a
-number whose square is bigger than <span class="math inline">a^2</span>
-but smaller than 2. To do that, need to use <span class="math inline">(a
-+ 1/n)^{2}</span> and pick and <span class="math inline">n</span> that
-makes the terms less than 2.</p>
-<p>On the other side is finding a number whose square is smaller than
-<span class="math inline">a^2</span> but bigger than 2. Again, key is to
-use <span class="math inline">(a - 1/n)^{2}</span> and to use <span
-class="math inline">n</span> that will make the term bigger than 2.</p>
+<h4 id="wave-equation">3-1. Wave Equation</h4>
+<p>Acoustic/scalar wave equation <span
+class="math display">\partial^{2}_{t} p = c^{2} \Delta p +s</span></p>
+<p>where <span class="math inline">p</span> is pressure, <span
+class="math inline">\Delta</span> is the Laplacian operator, containing
+second derivatives in space namely <span
+class="math inline">\partial^{2}_{x} p + \partial^{2}_{y} p +
+\partial^{2}_{z} p</span>, <span class="math inline">c</span> is the
+propagation velocity, and <span class="math inline">s</span> is the
+source term.</p>
+<p><span class="math inline">p</span> is a function of space <span
+class="math inline">x</span> and time <span
+class="math inline">t</span>. <span class="math inline">s</span> is
+space-dependet but does not depend on time. <span
+class="math inline">s</span> depends on both space and time.</p>
+<p>This represents for instance propagation of sound waves.</p>
+<h4 id="algorithm">3-2. Algorithm</h4>
+<ins>
+Space-time discretization
+</ins>
+<p>Space is discretized horizontally by dots. Distance between dots is
+<span class="math inline">dx</span>. Index each dot by <span
+class="math inline">j</span>.</p>
+<p>Modify continuous <span class="math inline">x</span> to be <span
+class="math inline">x_{j} = jdx, j = [0,j_{max}]</span>.</p>
+<p>Time is discretized vertically the same way. Distance between dots is
+<span class="math inline">dt</span>. Access time with <span
+class="math inline">\cdots, n-1, n, n+1, \cdots</span>.</p>
+<p><span class="math inline">t_n = ndt, n = [0, n_{max}]</span>.</p>
+<ins>
+Consequence for fields
+</ins>
+<p>Move from continuous form <span class="math inline">p(x,t)</span> to
+discrete form <span class="math inline">p_{j}^{n}</span></p>
+<p><span class="math inline">p(x_{j}, t_{n} + dt) \rightarrow
+p_{j}^{n+1}</span>.</p>
+<ins>
+Finite difference for wave equation
+</ins>
+<p>Wave equation on 1D: <span class="math display">\partial^{2}_{t}
+p(x,t) = c^{2}(x) \partial^{2}_{x} p(x,t) +s(x,t)</span></p>
+<p><span class="math inline">\partial^{2}_{t} p(x,t) \rightarrow
+\dfrac{p_{j}^{n+1} - 2p_{j}^{n} + p_{j}^{n-1}}{dt^{2}}</span></p>
+<p><span class="math inline">\partial^{2}_{x} p(x,t) \rightarrow
+\dfrac{p_{j+1}^{n} - 2p_{j}^{n} + p_{j-1}^{n}}{dx^{2}}</span></p>
+<p><span class="math inline">\implies \dfrac{p_{j}^{n+1} - 2p_{j}^{n} +
+p_{j}^{n-1}}{dt^{2}} = c^2 \dfrac{p_{j+1}^{n} - 2p_{j}^{n} +
+p_{j-1}^{n}}{dx^{2}} + s_{j}^{n}</span></p>
+<p><span class="math inline">\implies</span> <span
+class="math inline">p</span> at point <span class="math inline">j</span>
+is defined at 3 different times, <span
+class="math inline">n+1,n,n-1</span></p>
+<p><span class="math inline">\implies</span> <ins>Extrapolation
+problem</ins>. Isolate <span class="math inline">p</span> at <span
+class="math inline">j</span> for <span class="math inline">n+1</span>
+(future), and put everything else on the right hand side</p>
+<p><span class="math inline">\implies</span> <span
+class="math inline">p_{j}^{n+1} = c_{j}^{2}
+\frac{dt^{2}}{dx^{2}}[p_{j+1}^{n} - 2p_{j}^{n} + p_{j-1}^{n}] +
+2p_{j}^{n} - p_{j}^{n-1} + dt^{2}s_{j}^{n}</span>, which is called
+<ins>fully explicit scheme</ins> because we can write the future based
+on what we know in the present and the past.</p>
+<h4 id="boundaries-sources">3-3. Boundaries, Sources</h4>
+<ins>
+Boundary conditions
+</ins>
+<p>Set the pressure to zero at the edges. Reflects a perfectly
+reflecting boundary – energy that goes to the sides will come back
+in.</p>
+<p><span class="math inline">p(x = 0,t) = 0</span></p>
+<p><span class="math inline">p(x = x_{max},t)=0</span></p>
+<ins>
+Initial conditions
+</ins>
+<p><span class="math inline">p(x, t = 0) = 0</span></p>
+<p><span class="math inline">\partial_{t}p(x, t=0) = 0</span></p>
+<ins>
+Source terms
+</ins>
+<p>If we solve pde, often make use of delta functions <span
+class="math display">\begin{equation}
+  \delta(x)=\begin{cases}
+    \infty, &amp; \text{at $x=0$}.\\
+    0, &amp; \text{otherwise}.
+  \end{cases}
+\end{equation}</span></p>
+<p>The integral is equal to one</p>
+<p><span class="math display"> \int_{\infty}^{\infty} \delta(x)dx
+=1</span></p>
+<p>Compare our numerical solution with that of analytic, using Green’s
+function.</p>
+<ins>
+<p>Box <span class="math inline">\delta</span>-generating function
+(space) </inf></p>
+<p><span class="math display">\begin{equation}
+  \delta_{bc}(x)=\begin{cases}
+    \frac{1}{dx}, &amp; \text{for $x \leq\frac{dx}{2}$}.\\
+    0, &amp; \text{otherwise}.
+  \end{cases}
+\end{equation}</span></p>
+<p>As <span class="math inline">dx \rightarrow 0</span>, this function
+converges to the delta function.</p>
+<ins>
+<p>Gaussian <span class="math inline">\delta</span>-generating function
+(time) </inf></p>
+<p><span class="math display">\delta_{a}(t) = \dfrac{1}{\sqrt{2\pi
+a}}e^{-t^{2}/2a}</span></p>
+<p>As <span class="math inline">a \rightarrow 0</span>, this function
+converges to the delta function</p>
+<p><span class="math inline">\implies</span> finite approximation have
+the properties of integral equal to one</p>
+<p><span class="math display">\int_{-\infty}^{+\infty} \delta_{bc} (x)
+dx = 1</span></p>
+<p><span class="math display">\int_{-\infty}^{+\infty} \delta_{a} (x) dx
+= 1</span></p>
+<ins>
+Dirac delta function <span class="math inline">\delta(x)</span>
+</ins>
+<p><span class="math display">\int_{-\infty}^{\infty} f(x) \delta(x-a) =
+f(a)</span></p>
+<p>Using discrete version of the Dirac delta function allows us to
+numerically approximate Green’s function, and compare with analytical
+solutions.</p>
+<ins>
+Source-time function
+</ins>
+<p>We can denote the grid point, along space, to be <span
+class="math inline">j_s</span> to indicate the source that corresponds
+to where discrete version of delta function is injected. (the point
+where we introduce the source term)</p>
+<p>In the beginning everything is at rest, and then progressively during
+the simulation, we will start injecting energy at this particular
+point.</p>
+<p><span class="math inline">s(x,t) = \delta(x-x_{s})f(t)</span></p>
+<p>Often use first derivative of Gaussian function:</p>
+<p><span class="math inline">f(t) =
+-8f_{0}(t-t_{0})e^{-\frac{1}{4f_{0}^{2}}(t-t_{0})^{2}}</span>. Think has
+an error. Should be <span class="math inline">f(t) =
+-8f_{0}(t-t_{0})e^{-(4f_{0})^{2}(t-t_{0})^{2}}</span></p>
+<p>where <span class="math inline">f_0</span> is the dominat frequency –
+often used for a wave simulation.</p>
+<p>What is dominant frequency? E.g. in spectral space, taking the
+fourier transform, obtain the amplitude spectrum of that function. It
+containes a lot of frequencies, but the dominant energy is at frequency
+<span class="math inline">f_0</span>.</p>
+<p><img src="./images/dominant_freq.png" /></p>
+<p>Why use the first derivative of a Gaussian function to initialize the
+source-time function if we want a Gaussian waveform as solution to the
+1D wave equation? &gt; The resulting signal is an integral of the source
+time function.</p>
+<h4 id="initialization">3-4. Initialization</h4>
+<p>Setting up the space-time discretization.</p>
+<p>Key questions are: + what are the spatial wavelengths? + always make
+use of the relation between velocity, wave number and wavelength + <span
+class="math inline">c = \omega/k = \lambda/T</span>, where <span
+class="math inline">\omega</span> is the temporal frequency, <span
+class="math inline">k</span> is wavenumber, <span
+class="math inline">\lambda</span> is the wavelength, and <span
+class="math inline">T</span> the period.</p>
+<ins>
+A physical problem
+</ins>
+<p><span class="math inline">c = \lambda/T = \lambda f</span></p>
+<p><span class="math inline">c = 343</span> m/s</p>
+<p><span class="math inline">f_{1} = 20</span> Hz <span
+class="math inline">\rightarrow \lambda_{1} = 17m</span></p>
+<p><span class="math inline">f_{2} = 50</span> Hz <span
+class="math inline">\rightarrow \lambda_{2} = 7m</span></p>
+<p>Number of points per wavelength: Discretize the smallest spatial
+wavelength in the field i.e., 50Hz, 7m.</p>
+<p><span class="math inline">\implies</span> smallest spatial
+wavelength</p>
+<p><span class="math inline">\implies</span> appropriately sampled.</p>
+<p>Similarly, appropriate sampling in time.</p>
+<p>Let <span class="math inline">dx = 0.5m</span> and <span
+class="math inline">dt = 0.0012s</span>.</p>
+<p>Spatial domain of 10km, and inject a source-time function with shape
+of the first derivative of a Gaussian function.</p>
+<p><img src="./images/w3_init.png" /></p>
+<ins>
+Python
+</ins>
+<p>Recap finite-difference approximation of the 1D wave equation:</p>
+<p><span class="math inline">\implies</span> <span
+class="math inline">p_{j}^{n+1} = c_{j}^{2}
+\frac{dt^{2}}{dx^{2}}[p_{j+1}^{n} - 2p_{j}^{n} + p_{j-1}^{n}] +
+2p_{j}^{n} - p_{j}^{n-1} + dt^{2}s_{j}^{n}</span></p>
+<p>Graphically, we start at the second point because we dont calculate
+points at the boundaries.</p>
+<p><img src="./images/w3_j.png" /></p>
+<p>Then we sequentially move to <span
+class="math inline">j+4</span>.</p>
+<p><img src="./images/w3_j1.png" /></p>
+<p><img src="./images/w3_j2.png" /></p>
+<p><img src="./images/w3_j3.png" /></p>
+<p><img src="./images/w3_j4.png" /></p>
 </body>
 </html>
