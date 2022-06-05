@@ -13,7 +13,7 @@ $$\partial^{2}_{t} p = c^{2} \Delta p +s$$
 
 where $p$ is pressure, $\Delta$ is the Laplacian operator, containing second derivatives in space namely $\partial^{2}_{x} p + \partial^{2}_{y} p  + \partial^{2}_{z} p$, $c$ is the propagation velocity, and $s$ is the source term.
 
-$p$ is a function of space $x$ and time $t$. $s$ is space-dependet but does not depend on time. $s$ depends on both space and time. 
+$p$ is a function of space $x$ and time $t$. $c$ is space-dependant but does not depend on time. $s$ depends on both space and time. 
 
 This represents for instance propagation of sound waves. 
 
