@@ -1,55 +1,193 @@
 ---
-title: "Notes on Abbott's Understanding Analysis"
-description: "Notes on analysis"
+title: "Notes on Coursera's Computers, Waves, Simulations"
+description: "Notes on wave and simulation"
 author: "Zul "
 ---
 
-### Consequences of completeness
 
-#### 4-1. Nested Interval Property
 
-The statement looks similar to Example 1.2.2. My first thought was that it's going to be empty.. I guess the difference is that $I_n = [a_n,b_n]$ instead of $\{n,n+1,...\}$ (one, contingent on $a_n$ rather than $n$; two, has an upperbound of $b_n$).
+#### 3-1. Wave Equation
 
-Intuitively, the theorem follows from the fact that all $a_n$ is bounded by all $b_n$, thus by axiom of completeness, there's an $x$ nested for all intervals $[a_n,b_n]$.
+Acoustic/scalar wave equation
+$$\partial^{2}_{t} p = c^{2} \Delta p +s$$
 
-Edit 2022-06-03: Now that I've done exercise 1.4.3, Nested Interval Property must be closed for the conclusion of the theorem to hold.
+where $p$ is pressure, $\Delta$ is the Laplacian operator, containing second derivatives in space namely $\partial^{2}_{x} p + \partial^{2}_{y} p  + \partial^{2}_{z} p$, $c$ is the propagation velocity, and $s$ is the source term.
 
-#### 4-2. Archimedean Property
+$p$ is a function of space $x$ and time $t$. $s$ is space-dependet but does not depend on time. $s$ depends on both space and time. 
 
-Intuitively, property 1 saying that  $\mathbf{N}$ is not bounded above. It is interesting to note that the proof only depends on axiom of completeness and that $\mathbf{N}$ is closed under addition.
+This represents for instance propagation of sound waves. 
 
-Not too sure what's the usefulness of property 2... it's just a reciprocal.. but it's saying that any positive real number is bigger than $1/n$ if $n$ is big enough.
+#### 3-2. Algorithm
 
-#### 4-3. Density of Q in R
+<ins>Space-time discretization</ins>
 
-My god... Abbott is so good at explaining this proof. I have never seen any other authors explained the way he does.
+Space is discretized horizontally by dots. Distance between dots is $dx$. Index each dot by $j$. 
 
-I think the tricky part is just choosing m greater than na, such that m is small enough so that 
+Modify continuous $x$ to be $x_{j} = jdx, j = [0,j_{max}]$.
 
-$$
-m-1 \leq na <m
-$$
+Time is discretized vertically the same way. Distance between dots is $dt$. Access time with $\cdots, n-1,  n, n+1, \cdots$. 
 
-How do we know such m exists? My first thought is that the key is actually to pick $n$ big enough so that it "step over" $(a,b)$. Such $n$ exists by property 2 of Archimedean property (ah, now i see why it's useful). As a result, $1/n$, scaled by some integer $m$, will straddle between $a$ and $a+1$ (see figure). Meaning $m/n$.. wait this does not follow (i iniatially thought of saying $m/n -1$ is less than $a$, but no, it is $m/n - 1/n$)
+$t_n = ndt, n = [0, n_{max}]$.
 
-![](./images/4_3_qdense.png)
+<ins>Consequence for fields</ins>
 
-Ok i just looked at [MO](https://math.stackexchange.com/questions/103839/proof-that-mathbbq-is-dense-in-mathbbr). To prove existence of $m$, given any real $r$,
+Move from continuous form $p(x,t)$ to discrete form $p_{j}^{n}$
 
-1. if $r>0$, then $\exists m$, where $m$ is natural number and $m>r$. Let $M$ be the set of such m's. By well-ordering, there is a $m_0 \leq m$. If $m_0=1$, then $0<r<1$ and we are done. If $m_0>1$ then $m_0-1 \leq r$ by well-ordering principle.
-2. If $r=0$, then $m_0 =1$ and we are done.
-3. If $r <0$, then let $w = -r$. By (1), there is $m_0-1 \leq w <m_0$, therefore $-m_0<r \leq 1-m_0$. If $r < 1-m_0$, we are done. Otherwise, choose $2 - m_0$ and we are done.
+$p(x_{j}, t_{n} + dt) \rightarrow p_{j}^{n+1}$.
 
-Edit 2022-06-03: Now that I have done exercise 1.4.6, the key part of this proof really is just in having $n$ so small such that $1/n < (a,b)$ for any $a$ and $b$.
 
-#### 4-4. Density of irrational in R
+<ins> Finite difference for wave equation </ins>
 
-Bro this is cool. I'm shook. Will go to blog post.
+Wave equation on 1D:
+$$\partial^{2}_{t} p(x,t) = c^{2}(x) \partial^{2}_{x} p(x,t) +s(x,t)$$
 
-#### 4-5. Existence of square roots
+$\partial^{2}_{t} p(x,t) \rightarrow \dfrac{p_{j}^{n+1} - 2p_{j}^{n} + p_{j}^{n-1}}{dt^{2}}$
 
-I  suppose proof by construction has always been what Im weak at, and this theorem requires proof by constructions.
+$\partial^{2}_{x} p(x,t) \rightarrow \dfrac{p_{j+1}^{n} - 2p_{j}^{n} + p_{j-1}^{n}}{dx^{2}}$
 
-Essentially, the proof relies on finding a counterexample -- namely, a number whose square is bigger than $a^2$ but smaller than 2. To do that, need to use $(a + 1/n)^{2}$ and pick and $n$ that makes the terms less than 2.
+$\implies \dfrac{p_{j}^{n+1} - 2p_{j}^{n} + p_{j}^{n-1}}{dt^{2}} = c^2 \dfrac{p_{j+1}^{n} - 2p_{j}^{n} + p_{j-1}^{n}}{dx^{2}} + s_{j}^{n}$
 
-On the other side is finding a number whose square is smaller than $a^2$ but bigger than 2. Again, key is to use $(a - 1/n)^{2}$ and to use $n$ that will make the term bigger than 2.
+$\implies$ $p$ at point $j$ is defined at 3 different times, $n+1,n,n-1$
+
+$\implies$ <ins>Extrapolation problem</ins>. Isolate $p$ at $j$ for $n+1$ (future), and put everything else on the right hand side
+
+$\implies$ $p_{j}^{n+1} = c_{j}^{2} \frac{dt^{2}}{dx^{2}}[p_{j+1}^{n} - 2p_{j}^{n} + p_{j-1}^{n}] + 2p_{j}^{n} - p_{j}^{n-1} + dt^{2}s_{j}^{n}$, which is called <ins>fully explicit scheme</ins> because we can write the future based on what we know in the present and the past. 
+
+#### 3-3. Boundaries, Sources 
+
+<ins> Boundary conditions </ins>
+
+Set the pressure to zero at the edges. Reflects a perfectly reflecting boundary -- energy that goes to the sides will come back in.
+
+$p(x = 0,t) = 0$
+
+$p(x = x_{max},t)=0$
+
+<ins> Initial conditions </ins>
+
+$p(x, t = 0) = 0$
+
+$\partial_{t}p(x, t=0) = 0$
+
+<ins> Source terms </ins>
+
+If we solve pde, often make use of delta functions
+$$\begin{equation}
+  \delta(x)=\begin{cases}
+    \infty, & \text{at $x=0$}.\\
+    0, & \text{otherwise}.
+  \end{cases}
+\end{equation}$$
+
+The integral is equal to one
+
+$$ \int_{\infty}^{\infty} \delta(x)dx =1$$
+
+Compare our numerical solution with that of analytic, using Green's function.
+
+<ins> Box $\delta$-generating function (space) </inf>
+
+$$\begin{equation}
+  \delta_{bc}(x)=\begin{cases}
+    \frac{1}{dx}, & \text{for $x \leq\frac{dx}{2}$}.\\
+    0, & \text{otherwise}.
+  \end{cases}
+\end{equation}$$
+
+As $dx \rightarrow 0$, this function converges to the delta function.
+
+<ins> Gaussian $\delta$-generating function (time) </inf>
+
+$$\delta_{a}(t) = \dfrac{1}{\sqrt{2\pi a}}e^{-t^{2}/2a}$$
+
+As $a \rightarrow 0$, this function converges to the delta function
+
+$\implies$ finite approximation have the properties of integral equal to one
+
+$$\int_{-\infty}^{+\infty} \delta_{bc} (x) dx = 1$$
+
+$$\int_{-\infty}^{+\infty} \delta_{a} (x) dx = 1$$
+
+<ins>Dirac delta function $\delta(x)$ </ins>
+
+$$\int_{-\infty}^{\infty} f(x) \delta(x-a) = f(a)$$
+
+Using discrete version of the Dirac delta function allows us to numerically approximate Green's function, and compare with analytical solutions.
+
+<ins>Source-time function</ins>
+
+We can denote the grid point, along space, to be $j_s$ to indicate the source that corresponds to where discrete version of delta function is injected. (the point where we introduce the source term)
+
+In the beginning everything is at rest, and then progressively during the simulation, we will start injecting energy at this particular point.
+
+$s(x,t) = \delta(x-x_{s})f(t)$
+
+Often use first derivative of Gaussian function:
+
+$f(t) = -8f_{0}(t-t_{0})e^{-\frac{1}{4f_{0}^{2}}(t-t_{0})^{2}}$. Think has an error. Should be $f(t) = -8f_{0}(t-t_{0})e^{-(4f_{0})^{2}(t-t_{0})^{2}}$
+
+where $f_0$ is the dominat frequency -- often used for a wave simulation. 
+
+What is dominant frequency? E.g. in spectral space, taking the fourier transform, obtain the amplitude spectrum of that function. It containes a lot of frequencies, but the dominant energy is at frequency $f_0$. 
+
+
+![](./images/dominant_freq.png)
+
+Why use the first derivative of a Gaussian function to initialize the source-time function if we want a Gaussian waveform as solution to the 1D wave equation?
+> The resulting signal is an integral of the source time function. 
+
+
+#### 3-4. Initialization
+
+Setting up the space-time discretization.
+
+Key questions are:
++ what are the spatial wavelengths?
+    + always make use of the relation between velocity, wave number and wavelength
+    + $c = \omega/k = \lambda/T$, where $\omega$ is the temporal frequency, $k$ is wavenumber, $\lambda$ is the wavelength, and $T$ the period. 
+
+<ins> A physical problem </ins>
+
+$c = \lambda/T = \lambda f$
+
+$c = 343$ m/s
+
+$f_{1} = 20$ Hz $\rightarrow \lambda_{1} = 17m$ 
+
+$f_{2} = 50$ Hz $\rightarrow \lambda_{2} = 7m$ 
+
+Number of points per wavelength: Discretize the smallest spatial wavelength in the field i.e., 50Hz, 7m. 
+
+$\implies$ smallest spatial wavelength
+
+$\implies$ appropriately sampled.
+
+Similarly, appropriate sampling in time.
+
+Let $dx = 0.5m$ and $dt = 0.0012s$.
+
+Spatial domain of 10km, and inject a source-time function with shape of the first derivative of a Gaussian function. 
+
+![](./images/w3_init.png)
+
+<ins> Python </ins>
+
+Recap finite-difference approximation of the 1D wave equation:
+
+$\implies$ $p_{j}^{n+1} = c_{j}^{2} \frac{dt^{2}}{dx^{2}}[p_{j+1}^{n} - 2p_{j}^{n} + p_{j-1}^{n}] + 2p_{j}^{n} - p_{j}^{n-1} + dt^{2}s_{j}^{n}$
+
+Graphically, we start at the second point because we dont calculate points at the boundaries.
+
+![](./images/w3_j.png)
+
+Then we sequentially move to $j+4$.
+
+![](./images/w3_j1.png)
+
+![](./images/w3_j2.png)
+
+![](./images/w3_j3.png)
+
+![](./images/w3_j4.png)
+
+
