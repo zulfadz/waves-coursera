@@ -85,7 +85,7 @@ $$ \int_{\infty}^{\infty} \delta(x)dx =1$$
 
 Compare our numerical solution with that of analytic, using Green's function.
 
-<ins> Box $\delta$-generating function (space) </inf>
+<ins> Box $\delta$-generating function (space) </ins>
 
 $$\begin{equation}
   \delta_{bc}(x)=\begin{cases}
@@ -96,7 +96,7 @@ $$\begin{equation}
 
 As $dx \rightarrow 0$, this function converges to the delta function.
 
-<ins> Gaussian $\delta$-generating function (time) </inf>
+<ins> Gaussian $\delta$-generating function (time) </ins>
 
 $$\delta_{a}(t) = \dfrac{1}{\sqrt{2\pi a}}e^{-t^{2}/2a}$$
 
