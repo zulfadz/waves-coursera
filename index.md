@@ -1,7 +1,7 @@
 ---
 title: "Notes on Coursera's Computers, Waves, Simulations"
 description: "Notes on wave and simulation"
-author: "Zul "
+author: "Zul-Fadzli Abu Bakar "
 ---
 
 
